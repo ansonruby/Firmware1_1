@@ -4,8 +4,9 @@
 # Actualizador
 # horarios
 # Mejoras visualizacion estados
-# UPS
-# Seguridad
-# Mejoras modulo ethernet menejo de errores
-# Mejoras Dominio_Servidor y configuracion test, automatico
-#
+# Seguridad con switch fisico
+# Mejoras modulo ethernet Filtro de errores
+# Menu configuracion test ingreso nuevo Dominio
+# Restablecimeinto automatico por perdida de server y dominio
+# Invitaciones
+# Unificacion para dispsotivos CAT01 y CAE01
