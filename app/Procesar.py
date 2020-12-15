@@ -837,80 +837,11 @@ def Restablecer():
             print 'NO hay conecion local'
 
 
-    """
-    if Hay_Internet == 1: #revisar intervalo etc
-        #print 'No hay Internet verificar tipo de desconecion Tipo de reaccion'
-        #print Hay_Internet
-        #print Estado_Internet
-        Res_Ping=Ping()
-        if Res_Ping == 'OK':
-            if PP_Mensajes:
-                print 'Responde'
-        else:
-            Estado_Ethernet = Estados_Internet()
-            if Estado_Ethernet.find("C") !=-1:
-                #-------------------------------------------------
-                # verificar dominio
-                #-------------------------------------------------
-                if PP_Mensajes:
-                    print 'Hay coneccion Local'
-                    print 'verificar Dominio_Servidor'
-                Dominio_Prueba = (Leer_Archivo(31)).rstrip()
-                #Dominio_Prueba ='gre'
-
-                Dom = Dominio_Valido(Dominio_Prueba)
-                if Dom == False:
-                    #revizar si hay un nuevo dominio en la Lista
-                    if PP_Mensajes:
-                        print 'Error: Dominio, revicion de Lista'
-
-
-                    Nuevo_Dominio = List_Dom()
-                    print '---ddsd--'
-                    print Nuevo_Dominio
-                    print Nuevo_Dominio.find("Error")
-                    print IP_Valido(Nuevo_Dominio)
-                    if Nuevo_Dominio.find("Error") ==-1:
-                        print 'se puede cambiar el dominio?' #verificar antes
-
-                        address_nuevo = Dominio_Valido(Nuevo_Dominio)
-                        print 'Dominio:' + Nuevo_Dominio
-                        print 'IP:' + str(address_nuevo)
-                        #antes de colocar el dominio hacer un test
-                        #Borrar(31)
-                        #Escrivir_Archivo(Nuevo_Dominio,31)
-                        #Cambiar_LINK()
-                    else:
-                        if PP_Mensajes:
-                            print 'E:' + Nuevo_Dominio
-                            print 'Error: NO responde el dominio de Lista'
-
-                else: #-----------------   cambio la IP  ----------------------
-                    if PP_Mensajes:
-                        print Dom
-                    adress_Prueba = (Leer_Archivo(32)).rstrip()
-                    if Dom == adress_Prueba:
-                        if PP_Mensajes:
-                            print 'Es la misma'
-                    else:
-                        if PP_Mensajes:
-                            print 'son diferentes cambiar Actualizar a la nueva IP'
-                        Borrar(32)
-                        Escrivir_Archivo(Dom,32)
-                        Cambiar_LINK()
-
-            else:
-                if PP_Mensajes:
-                    print 'No hay conecion Local' # espera o sacar un mensaje aunque ya esta los puntos azules
-    """
-
    	#---------------------------------------------------------
 	#----						    ------
 	#----				 Programa principal ------
 	#----						    ------
 	#---------------------------------------------------------
-
-
 
 
 
@@ -927,12 +858,7 @@ Intentos_Actualizar_Usuarios(3)
 
 #A_Actualizacion_Firmware =1
 #Procedimiento_Actualizar_Firmware()
-"""
-Hay_Internet = 1
-while 1:
-    Restablecer()
-    time.sleep(0.05)
-"""
+
 while 1:
     #------------------if PP_Mensajes:---------------------------------------
     #  Proceso 0: Tiempo de espera para disminuir proceso
@@ -995,18 +921,18 @@ while 1:
     # Proceso 6: Actualizacion de firmware
     #---------------------------------------------------------
     #NOTA: Acer actualizacion de firmware despeue de actualizar usuarios
-    Actualizar_Firmware("01:45 PM") # 12:00 AM     03:59 PM 04:07 PM # hora chile  11:00 PM
+    Actualizar_Firmware("01:00 AM") # 12:00 AM     03:59 PM 04:07 PM # hora chile  11:00 PM
     #---------------------------------------------------------
     # Proceso 7: Switch de Seguridad para dispositivos CCCB
     #---------------------------------------------------------
-    """
+
     if Serial.find("CCCB") != -1: #ID_Tratado = IDQ
         if Switch() == '1':
             #print 'Abierto'
             #borrar base de datos
             Borrar_BD()
             #print Confimacion_Firmware(Tiempo(), Leer_Archivo(17).replace('\n',''),'Abierto el dispositivo')
-    """
+
     #---------------------------------------------------------
     # Proceso 8: Perdida de coneccion con el Servidor
     #---------------------------------------------------------
