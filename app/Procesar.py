@@ -85,6 +85,10 @@ A_Actualizacion_Firmware=0 # bloque
 #--------------------------------
 # variablee proceso actualizador de firmware
 Cantidad_Pines = 4
+
+#--------------------------------
+# tiempo antes para restableser el dispotivo por periodos de un minuto
+T_antes=0
 # Funciones	--------------------------------------
 
 def Log_Reinicio():
@@ -794,48 +798,67 @@ def Verificar_Actualizacion ( ID_F, Vercion_F, Git_F):
 
 def Restablecer():
     global Hay_Internet
-
+    global T_antes
+    #Hay_Internet = 1
     if Hay_Internet == 1:
-        print 'NO hay conecion con el servidor ?'
-        Ver_Link()
-        Estado_Ethernet = Estados_Internet()
-        if Estado_Ethernet.find("C") !=-1: #revicion wifi y ethernet
-            print 'Hay coneccion Local'
-            Dominio_Prueba = (Leer_Archivo(31)).rstrip()
-            print 'Dominio actual:'+Dominio_Prueba
-            IP_Dominio_Actual = Dominio_Valido(Dominio_Prueba)
-            if IP_Dominio_Actual !=False:
-                #-------------------------------------
-                #-------- camvio la IP o la configuracion de acceso Test
-                print 'Adquiere una IP :' + str(IP_Dominio_Actual)
-                #-------------------------------------
-                if Agregar_Nuevo_Servidor(Dominio_Prueba):
-                    print 'actualizar link'
-                    Cambiar_LINK() # activar cuando cambie los archivos
-                    Hay_Internet = 0 #prueba de restablesimeinto mejorar
-                else:
-                    print 'Esperar otros errores en el dominio'
-            else:
-                #-------------------------------------
-                #-------- Verificando cambio de dominio
-                print 'Revizar lista de dominios'
-                Nuevo_Dominio = List_Dom() #me devuleve una IP o dominio
-                print Nuevo_Dominio
-                if Nuevo_Dominio.find("Error") ==-1:
-                    print 'para cambio o'
-                    if Agregar_Nuevo_Servidor(Nuevo_Dominio):
+        T = Tiempo()
+        #print T
+        diferencia =  int( ( (int(T) -int(T_antes) ) /1000) /60)
+        #print diferencia
+        if diferencia >=1: #-------   Tiempo de intentos cada minuto
+            T_antes=T
+            #print 'intentar de nuevo'
+            if PP_Mensajes:
+                print 'NO hay conecion con el servidor ?'
+            Ver_Link()
+            Estado_Ethernet = Estados_Internet()
+            if Estado_Ethernet.find("C") !=-1: #revicion wifi y ethernet
+                if PP_Mensajes:
+                    print 'Hay coneccion Local'
+                Dominio_Prueba = (Leer_Archivo(31)).rstrip()
+                if PP_Mensajes:
+                    print 'Dominio actual:'+Dominio_Prueba
+                IP_Dominio_Actual = Dominio_Valido(Dominio_Prueba)
+                if IP_Dominio_Actual !=False:
+                    #-------------------------------------
+                    #-------- camvio la IP o la configuracion de acceso Test
+                    if PP_Mensajes:
+                        print 'Adquiere una IP :' + str(IP_Dominio_Actual)
+                    #-------------------------------------
+                    if Agregar_Nuevo_Servidor(Dominio_Prueba):
+                        if PP_Mensajes:
+                            print 'actualizar link'
                         Cambiar_LINK() # activar cuando cambie los archivos
-                        Hay_Internet = 0 #prueba de restablesimeinto mejorar
+                        Hay_Internet = 0 #prueba de restablesimiento mejorar?
                     else:
-                        print 'Esperar otros errores'
+                        if PP_Mensajes:
+                            print 'Esperar otros errores en el dominio'
                 else:
                     #-------------------------------------
-                    #No se puede hacer nada asta que el servidor se restabelsca
-                    print 'Esperar restablecimiento del servidor'
+                    #-------- Verificando cambio de dominio
+                    if PP_Mensajes:
+                        print 'Revizar lista de dominios'
+                    Nuevo_Dominio = List_Dom() #me devuleve una IP o dominio
+                    if PP_Mensajes:
+                        print Nuevo_Dominio
+                    if Nuevo_Dominio.find("Error") ==-1:
+                        if PP_Mensajes:
+                            print 'para cambio o'
+                        if Agregar_Nuevo_Servidor(Nuevo_Dominio):
+                            Cambiar_LINK() # activar cuando cambie los archivos
+                            Hay_Internet = 0 #prueba de restablesimiento mejorar?
+                        else:
+                            if PP_Mensajes:
+                                print 'Esperar otros errores'
+                    else:
+                        #-------------------------------------
+                        #No se puede hacer nada asta que el servidor se restabelsca
+                        if PP_Mensajes:
+                            print 'Esperar restablecimiento del servidor'
 
-        else:
-            print 'NO hay conecion local'
-
+            else:
+                if PP_Mensajes:
+                    print 'NO hay conecion local'
 
    	#---------------------------------------------------------
 	#----						    ------
@@ -858,6 +881,8 @@ Intentos_Actualizar_Usuarios(3)
 
 #A_Actualizacion_Firmware =1
 #Procedimiento_Actualizar_Firmware()
+
+
 
 while 1:
     #------------------if PP_Mensajes:---------------------------------------

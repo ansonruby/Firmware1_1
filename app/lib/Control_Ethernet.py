@@ -76,7 +76,6 @@ CE_rl =[        "/api/access/keyboard_access/index.php",      # Enviar Teclado
 #IP_servidor        = 'http://34.213.55.39'
 #IP_servidor        = 'http://34.221.92.179'
 
-
 #-----------------------------------------------
 #               Funciones
 #-----------------------------------------------
