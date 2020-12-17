@@ -1,6 +1,8 @@
 # Firmware1_1
-# Madre o Copia Firmware0
-# generador de pines
+# Madre : Copia Firmware0
+# Para  : IF
+# 
+# Generador de pines
 # Comunicacion entre dispositivos
 # Actualizador
 # horarios
@@ -10,4 +12,4 @@
 # Menu configuracion test ingreso nuevo Dominio
 # Restablecimeinto automatico por perdida de server y dominio
 # Invitaciones
-# Unificacion para dispsotivos CAT01 y CAE01
+# Unificacion para dispositivos CAT01 y CAE01
