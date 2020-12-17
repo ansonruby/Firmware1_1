@@ -1,4 +1,5 @@
 # Firmware1_1
+# Madre o Copia Firmware0
 # generador de pines
 # Comunicacion entre dispositivos
 # Actualizador
