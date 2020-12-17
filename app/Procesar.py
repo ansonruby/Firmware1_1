@@ -307,7 +307,7 @@ def Ping_Intento_Enviar_Usuarios_Autotizados():
             Hay_Internet = 1
             Escrivir_Estados('1',28)#estado comunicaion servidor
             Estado_Internet = 0
-        actualizar_usuarios_por();# colocar esta consula 30_05_2019
+        actualizar_usuarios_por();# colocar esta consula 30_05_2019, 16_12_2020:puede demoar demaciado
     else:
         if PP_Mensajes:
             print 'NO hay internet, se sige aurorizando'
@@ -829,7 +829,8 @@ def Restablecer():
                         if PP_Mensajes:
                             print 'actualizar link'
                         Cambiar_LINK() # activar cuando cambie los archivos
-                        Hay_Internet = 0 #prueba de restablesimiento mejorar?
+                        Ping_Intento_Enviar_Usuarios_Autotizados() #enviar usuarios
+                        #Hay_Internet = 0 #prueba de restablesimiento mejorar?
                     else:
                         if PP_Mensajes:
                             print 'Esperar otros errores en el dominio'
@@ -846,7 +847,8 @@ def Restablecer():
                             print 'para cambio o'
                         if Agregar_Nuevo_Servidor(Nuevo_Dominio):
                             Cambiar_LINK() # activar cuando cambie los archivos
-                            Hay_Internet = 0 #prueba de restablesimiento mejorar?
+                            Ping_Intento_Enviar_Usuarios_Autotizados() #enviar usuarios
+                            #Hay_Internet = 0 #prueba de restablesimiento mejorar?
                         else:
                             if PP_Mensajes:
                                 print 'Esperar otros errores'
