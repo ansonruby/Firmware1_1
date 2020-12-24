@@ -1567,7 +1567,7 @@ def Agregar_Nuevo_Servidor():
                             Borrar(36)
                             Escrivir_Archivo2(str(Test_IP_Dominio),36)#N_A_Dominio_Servidor
 
-                            # commands.getoutput('sudo reboot')
+                            commands.getoutput('sudo reboot')
 
                 else:
                         print 'Dominio NO Valido, no hay IP asociada'
